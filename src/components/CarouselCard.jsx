@@ -1,19 +1,15 @@
 import './CarouselCard.css'
-import imagem from '../assets/blusa.png'
 
-function CarouselCard({ image, title }) {
+
+function CarouselCard({ title, image }) {
 
   return(
-    <div>
-      <a>
-        <img src= {imagem} alt="" />
-      </a>
+    <div className="container">
 
-      <div>
-        <a>
-          <h5> Blusa </h5>
-        </a>
-      </div>
+      <img src={image} alt={title} />
+
+      <h5>{title}</h5>
+
     </div>
   )
 }

@@ -1,0 +1,10 @@
+.menu {
+    width: 30px;
+}
+
+@media (width <= 768px) {
+  .menu {
+        display: none;
+       
+    }
+}

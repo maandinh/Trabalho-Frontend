@@ -1,17 +1,17 @@
-import "./Header.css"
+import "./Header.css";
+import { TbMenu2, TbShoppingBag, TbUser } from "react-icons/tb";
 
 function Header() {
   return (
-    <header className="header">
-      <div className="logo">
-        <h1>MeuSite</h1>
-      </div>
+    <header>
+     <button><TbMenu2 /> </button>
 
-      <nav className="nav">
-        <a href="/">Home</a>
-        <a href="/sobre">Sobre</a>
-        <a href="/contato">Contato</a>
-      </nav>
+    <div className="right-icons">
+
+     <button> <TbUser /> </button>
+    <button> <TbShoppingBag /> </button>
+
+    </div>
     </header>
   )
 }
