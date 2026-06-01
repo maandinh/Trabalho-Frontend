@@ -1,81 +1,85 @@
-import { useState } from "react"
-import './Carousel.css'
-import CarouselCard from "./CarouselCard"
+import { useState, useEffect } from "react";
+import "./Carousel.css";
+import CarouselCard from "./CarouselCard";
 import { GrNext, GrPrevious } from "react-icons/gr";
-import blusa2 from '../assets/blusa2.jpg'
+import { produtoService } from "../services/api";
 
 function Carousel() {
+  const [products, setProducts] = useState([]);
+  const [inicio, setInicio] = useState(0);
+  const [cardsVisiveis, setCardsVisiveis] = useState(3);
 
- const cards = [
-  {
-    id: 1,
-    title: 'Blusa 1',
-    image: blusa2
-  },
-  {
-    id: 2,
-    title: 'Blusa 2',
-    image: 'https://picsum.photos/200/300?random=2'
-  },
-  {
-    id: 3,
-    title: 'Blusa 3',
-    image: 'https://picsum.photos/200/300?random=3'
-  },
-  {
-    id: 4,
-    title: 'Blusa 4',
-    image: 'https://picsum.photos/200/300?random=4'
-  },
-  {
-    id: 5,
-    title: 'Blusa 5',
-    image: 'https://picsum.photos/200/300?random=5'
-  }
-]
 
-  const [inicio, setInicio] = useState(0)
+  useEffect(() => {
+    async function carregarProdutos() {
+      const resposta = await produtoService.buscarTodos();
+
+      setProducts(resposta.data || resposta);
+    }
+
+    carregarProdutos();
+  }, []);
+
+
+  useEffect(() => {
+    const verificarTela = () => {
+      if (window.innerWidth >= 1024) {
+        setCardsVisiveis(10);
+      } else {
+        setCardsVisiveis(3);
+      }
+    };
+
+    verificarTela();
+
+    window.addEventListener("resize", verificarTela);
+
+    return () => {
+      window.removeEventListener("resize", verificarTela);
+    };
+  }, []);
+
 
   const proximos = () => {
-    if (inicio < cards.length - 3) {
-      setInicio(inicio + 1)
+    if (inicio < products.length - cardsVisiveis) {
+      setInicio(inicio + 1);
     }
-  }
+  };
 
   const anteriores = () => {
     if (inicio > 0) {
-      setInicio(inicio - 1)
+      setInicio(inicio - 1);
     }
-  }
+  };
 
-  return(
+
+  const produtosVisiveis = products.slice(
+    inicio,
+    inicio + cardsVisiveis
+  );
+
+  return (
     <div className="carousel">
-
       <button onClick={anteriores}>
-      <GrPrevious />
+        <GrPrevious />
       </button>
 
       <div className="cards">
-
-        {cards
-          .slice(inicio, inicio + 3)
-          .map((card) => (
-            <CarouselCard
-            image={card.image}
-              key={card.id}
-              title={card.title}
-              subtitle={card.subtitle}
-            />
+        {produtosVisiveis.map((produto) => (
+          <CarouselCard
+            key={produto.id}
+            title={produto.title}
+            image={produto.imageCover}
+            price={produto.price}
+          />
         ))}
-
       </div>
 
       <button onClick={proximos}>
-      <GrNext />
+        <GrNext />
       </button>
-
     </div>
-  )
+  );
 }
 
 export default Carousel;

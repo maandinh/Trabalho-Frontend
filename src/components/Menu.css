@@ -1,10 +1,43 @@
-.menu {
-    width: 30px;
+.overlay {
+  position: fixed;
+  inset: 0;
 }
 
-@media (width <= 768px) {
-  .menu {
-        display: none;
-       
-    }
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+background-color: #511a2d;
+color: white;
+  width: 250px;
+  height: 100vh;
+
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+
+}
+
+.menu.aberto {
+  transform: translateX(0);
+}
+
+.menu ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 30px;
+
+}
+
+.menu li {
+    text-align: center;
+    margin: 20px;
+}
+
+.menu a,
+.menu a:visited,
+.menu a:hover,
+.menu a:active {
+    color: white;
+  text-decoration: none;
 }

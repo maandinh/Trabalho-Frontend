@@ -2,12 +2,13 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 20px;
 }
 
-.right-icons {
+.icons {
     display: flex;
     gap: 15px;
+    color: #511a2d;
 }
 
 button {
@@ -16,5 +17,9 @@ button {
     font-size: 25px;
     display: flex;
     align-items: center; 
+    color: #511a2d
 }
 
+a:visited {
+ color:#511a2d
+}

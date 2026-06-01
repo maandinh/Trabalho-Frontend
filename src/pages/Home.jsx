@@ -1,17 +1,18 @@
 import Carousel from '../components/Carousel';
+import imgHome from '../assets/img-home.jpg';
 import Menu from '../components/Menu';
 import './Home.css';
 
 function Home() {
     return (
         <>
-    <img className= 'HomeImg'src={'https://picsum.photos/200/300?random=2'}/>
+    <img className= 'HomeImg'src={imgHome}/>
 
-    <h2> PROMOÇÕES </h2>
+    <h2 className='tituloHome'> PROMOÇÕES </h2>
 
     <Carousel/>
 
-    <h2> SUGESTÕES </h2>
+    <h2 className='tituloHome'> SUGESTÕES </h2>
 
     <Carousel/>
     </>
