@@ -1,0 +1,25 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.icons {
+    display: flex;
+    gap: 15px;
+    color: #511a2d;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    font-size: 25px;
+    display: flex;
+    align-items: center; 
+    color: #511a2d
+}
+
+a:visited {
+ color:#511a2d
+}

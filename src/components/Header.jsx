@@ -1,17 +1,27 @@
-import "./Header.css"
+import "./Header.css";
+import { TbMenu2, TbShoppingBag, TbUser } from "react-icons/tb";
+import { NavLink } from "react-router-dom";
+import { useState } from "react";
+import Menu from "./Menu";
 
 function Header() {
-  return (
-    <header className="header">
-      <div className="logo">
-        <h1>MeuSite</h1>
-      </div>
 
-      <nav className="nav">
-        <a href="/">Home</a>
-        <a href="/sobre">Sobre</a>
-        <a href="/contato">Contato</a>
-      </nav>
+   const [menuAberto, setMenuAberto] = useState(false);
+   
+  return (
+    <header>
+     <button  onClick={() => setMenuAberto(!menuAberto)}><TbMenu2 /> </button>
+
+  <Menu  aberto={menuAberto}  fecharMenu={() => setMenuAberto(false)}
+  />
+  
+
+    <div className="icons">
+
+     <button> <NavLink to="/perfil"> <TbUser /> </NavLink> </button>
+    <button> <NavLink to="/carrinho"> <TbShoppingBag /> </NavLink> </button>
+
+    </div>
     </header>
   )
 }
