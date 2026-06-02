@@ -1,8 +1,10 @@
+import { useNavigate } from 'react-router-dom';
 import { useCarrinho } from '../contexts/CartContext';
 import './Carrinho.css';
 
 function Carrinho() {
     const { carrinho, removerDoCarrinho, limparCarrinho, totalCarrinho, selecionados, toggleSelecionado } = useCarrinho();
+    const navigate = useNavigate();
 
     const formatarPreco = (valor) =>
         new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(valor);
@@ -38,7 +40,7 @@ function Carrinho() {
                 <div className='carrinho-footer'>
                     <p className='subtotal'>Subtotal: {formatarPreco(totalCarrinho)}</p>
                     <div className='acoes'>
-                        <button className='comprar-btn'>COMPRAR</button>
+                        <button className='comprar-btn' onClick={() => navigate('/checkout')}>COMPRAR</button>
                     </div>
                 </div>
             )}
