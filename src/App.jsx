@@ -6,6 +6,7 @@ import Layout from "./layouts/Layout"
 import Login from "./pages/Login";
 import Perfil from "./pages/Perfil";
 import Produtos from "./pages/Produtos";
+import Checkout from "./pages/Checkout";
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
       <Route path="cadastro" element={<Cadastro/>} />
 
       <Route path="carrinho" element={<Carrinho />} />
+
+      <Route path="checkout" element={<Checkout />} />
 
       <Route path="perfil" element={<Perfil />} />
 
