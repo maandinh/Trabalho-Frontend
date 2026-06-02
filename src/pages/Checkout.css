@@ -1,0 +1,165 @@
+.checkout-container {
+    padding: 20px;
+}
+
+.checkout-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #450B1E;
+}
+
+.checkout-produtos,
+.checkout-endereco,
+.checkout-resumo {
+    margin-bottom: 20px;
+    border: 1px solid #450B1E;
+    border-radius: 6px;
+}
+
+.checkout-produtos h3,
+.checkout-endereco h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #450B1E;
+}
+
+.checkout-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-right: 16px;
+    border: 2px solid #450B1E;
+}
+
+.item-info {
+    flex: 1;
+}
+
+.item-nome {
+    font-weight: bold;
+}
+
+.item-preco {
+    color: #450B1E;
+    font-size: 0.9rem;
+}
+
+.checkout-resumo p {
+    margin: 4px 0;
+}
+
+.total {
+    font-weight: bold;
+    color: #450B1E;
+}
+
+.checkout-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.checkout-btn {
+    width: 100%;
+}
+
+.subtotal {
+    color: white;
+    font-weight: bolder;
+}
+
+.finalizar-btn {
+    width: 100%;
+    background: #450B1E;
+    color: #fff;
+    border: none;
+    padding: 14px;
+    cursor: pointer;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background 0.2s ease-in-out;
+}
+
+.finalizar-btn:hover {
+    background: #5a0f2a;
+}
+
+.voltar-btn {
+    width: 100%;
+    background: transparent;
+    color: #450B1E;
+    border: 2px solid #450B1E;
+    padding: 14px;
+    cursor: pointer;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+}
+
+.voltar-btn:hover {
+    background: #450B1E;
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .checkout-container {
+        padding: 12px;
+    }
+
+    .checkout-container h2 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .checkout-produtos,
+    .checkout-endereco,
+    .checkout-resumo {
+        margin-bottom: 16px;
+        border-radius: 4px;
+        padding: 10px;
+    }
+
+    .checkout-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    .item-info {
+        margin-top: 8px;
+    }
+
+    .item-nome {
+        font-size: 14px;
+    }
+
+    .item-preco {
+        font-size: 13px;
+    }
+
+    .checkout-footer {
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px;
+    }
+
+    .finalizar-btn,
+    .voltar-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 14px;
+    }
+}
