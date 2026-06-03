@@ -3,7 +3,7 @@ import "./EsqueceuSenha.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useAuth } from "../contexts/useAuth"
+import { useAuth } from "../contexts/useAuth";
 
 export default function EsqueceuSenha() {
   const navigate = useNavigate();
@@ -12,70 +12,91 @@ export default function EsqueceuSenha() {
 
   const [email, setEmail] = useState("");
 
+  const [modal, setModal] = useState({
+    open: false,
+    message: "",
+  });
+
   async function handleRecuperarSenha(e) {
     e.preventDefault();
 
     try {
       await recuperarSenha(email);
 
-      alert(
-        "Verifique seu Email para Redefinição. (obs: olhe o spam também)!"
-      );
+      setModal({
+        open: true,
+        message:
+          "Verifique seu e-mail para redefinição (e o spam também, porque o mundo é cruel).",
+      });
 
-      navigate("/");
+      setTimeout(() => {
+        navigate("/login");
+      }, 3000);
+
     } catch (error) {
       console.error(error);
 
       switch (error.code) {
         case "auth/user-not-found":
-          alert("Usuário não encontrado.");
+          setModal({
+            open: true,
+            message: "Usuário não encontrado.",
+          });
           break;
 
         case "auth/invalid-email":
-          alert("Email inválido.");
+          setModal({
+            open: true,
+            message: "E-mail inválido.",
+          });
           break;
 
         default:
-          alert("Erro ao enviar email.");
+          setModal({
+            open: true,
+            message: "Erro ao enviar email.",
+          });
       }
     }
   }
 
   return (
     <div className="esqueceu-senha-container">
-      <form
-        className="esqueceu-senha-form"
-        onSubmit={handleRecuperarSenha}
-      >
+      <form className="esqueceu-senha-form" onSubmit={handleRecuperarSenha}>
         <h1>ESQUECEU A SENHA?</h1>
 
         <p className="descricao">
-          Digite seu email para receber
-         <br />
-         um link de recuperação.
-      </p>
+          Digite seu email para receber <br />
+          um link de recuperação.
+        </p>
 
-      <label>E-mail</label>
+        <label>E-mail</label>
 
-      <input
-        type="email"
-        placeholder=""
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
 
-        <button type="submit">
-          ENVIAR
-        </button>
+        <button type="submit">ENVIAR</button>
 
-       <button
-        type="button"
-        onClick={() => navigate("/login")}
-        >
+        <button type="button" onClick={() => navigate("/login")}>
           ← LOGIN
         </button>
       </form>
+
+      {modal.open && (
+        <div className="modal-overlay">
+          <div className="modal-box">
+            <p>{modal.message}</p>
+
+            <button onClick={() => setModal({ open: false, message: "" })}>
+              Fechar
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

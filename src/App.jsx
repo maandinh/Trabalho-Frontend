@@ -6,7 +6,7 @@ import Carrinho from "./pages/Carrinho";
 import Login from "./pages/Login";
 import EsqueceuSenha from "./pages/EsqueceuSenha";
 import Cadastro from "./pages/Cadastro";
-
+import Erro404 from "./pages/Erro404";
 import Layout from "./layouts/Layout";
 
 function App() {
@@ -45,7 +45,10 @@ function App() {
         path="/cadastro"
         element={<Cadastro />}
       />
+
+       <Route path="*" element={<Erro404 />} />
     </Routes>
+  
   );
 }
 

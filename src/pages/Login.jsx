@@ -10,7 +10,7 @@ export default function Login() {
   const [senha, setSenha] = useState("");
   const [mostrarSenha, setMostrarSenha] = useState(false);
   const [loading, setLoading] = useState(false);
-
+  const [modal, setModal] = useState({open: false, message: "",});
   const [erroEmail, setErroEmail] = useState("");
   const [erroSenha, setErroSenha] = useState("");
 
@@ -46,25 +46,37 @@ export default function Login() {
     } catch (error) {
       console.error(error);
 
-      switch (error.code) {
-        case "auth/user-not-found":
-        case "auth/invalid-credential":
-          setErroEmail("E-mail ou senha incorretos.");
-          setEmail("");
-          setSenha("");
-          break;
+switch (error.code) {
+  case "auth/user-not-found":
+  case "auth/invalid-credential":
+    setModal({
+      open: true,
+      message: "E-mail ou senha incorretos.",
+    });
+    setEmail("");
+    setSenha("");
+    break;
 
-        case "auth/wrong-password":
-          setErroSenha("Senha incorreta.");
-          break;
+     case "auth/wrong-password":
+      setModal({
+      open: true,
+      message: "Senha incorreta.",
+    });
+    break;
 
-        case "auth/invalid-email":
-          setErroEmail("E-mail inválido.");
-          break;
+     case "auth/invalid-email":
+       setModal({
+       open: true,
+        message: "E-mail inválido.",
+    });
+    break;
 
-        default:
-          setErroEmail("Erro ao fazer login.");
-      }
+      default:
+      setModal({
+      open: true,
+      message: "Erro ao fazer login.",
+     });
+}
     } finally {
       setLoading(false);
     }
@@ -127,6 +139,20 @@ export default function Login() {
         >
           CRIAR CONTA
         </button>
+
+        {modal.open && (
+       <div className="modal-overlay">
+       <div className="modal-box">
+       <p>{modal.message}</p>
+
+      <button
+        onClick={() => setModal({ open: false, message: "" })}
+      >
+        OK
+      </button>
+    </div>
+  </div>
+)}
       </form>
     </div>
   );

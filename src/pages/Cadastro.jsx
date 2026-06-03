@@ -11,38 +11,85 @@ export default function Cadastro() {
   const [senha, setSenha] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const [modal, setModal] = useState({
+    open: false,
+    message: "",
+  });
+
   const { cadastrar } = useAuth();
   const navigate = useNavigate();
 
   async function handleCadastro(e) {
     e.preventDefault();
 
+    if (!nome.trim()) {
+    setModal({
+      open: true,
+      message: "O nome é obrigatório.",
+    });
+    return;
+  }
+
+  if (!email.trim()) {
+    setModal({
+      open: true,
+      message: "O e-mail é obrigatório.",
+    });
+    return;
+  }
+
+  if (!senha.trim()) {
+    setModal({
+      open: true,
+      message: "A senha é obrigatória.",
+    });
+    return;
+  }
+
     try {
       setLoading(true);
 
       await cadastrar(nome, email, senha);
 
-      alert("Conta criada com sucesso!");
+      setModal({
+        open: true,
+        message: "Conta criada com sucesso!",
+      });
 
-      navigate("/login");
+      setTimeout(() => {
+        navigate("/login");
+      }, 1200);
+
     } catch (error) {
       console.error(error);
 
       switch (error.code) {
         case "auth/email-already-in-use":
-          alert("E-mail já está em uso");
+          setModal({
+            open: true,
+            message: "E-mail já está em uso",
+          });
           break;
 
         case "auth/weak-password":
-          alert("Senha muito fraca");
+          setModal({
+            open: true,
+            message: "Senha muito fraca",
+          });
           break;
 
         case "auth/invalid-email":
-          alert("E-mail inválido");
+          setModal({
+            open: true,
+            message: "E-mail inválido",
+          });
           break;
 
         default:
-          alert("Erro ao criar conta");
+          setModal({
+            open: true,
+            message: "Erro ao criar conta",
+          });
       }
     } finally {
       setLoading(false);
@@ -79,10 +126,20 @@ export default function Cadastro() {
           {loading ? "CRIANDO..." : "CRIAR CONTA"}
         </button>
 
-        <Link to="/login">
-          CANCELAR
-        </Link>
+        <Link to="/login">CANCELAR</Link>
       </form>
+
+      {modal.open && (
+        <div className="modal-overlay">
+          <div className="modal-box">
+            <p>{modal.message}</p>
+
+            <button onClick={() => setModal({ open: false, message: "" })}>
+              Fechar
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
