@@ -1,3 +1,5 @@
+import "./EsqueceuSenha.css";
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -17,7 +19,7 @@ export default function EsqueceuSenha() {
       await recuperarSenha(email);
 
       alert(
-        "Enviamos um link para redefinição de senha."
+        "Verifique seu Email para Redefinição. (obs: olhe o spam também)!"
       );
 
       navigate("/");
@@ -45,27 +47,33 @@ export default function EsqueceuSenha() {
         className="esqueceu-senha-form"
         onSubmit={handleRecuperarSenha}
       >
-        <h1>Recuperar Senha</h1>
+        <h1>ESQUECEU A SENHA?</h1>
 
-        <input
-          type="email"
-          placeholder="Digite seu email"
-          value={email}
-          onChange={(e) =>
-            setEmail(e.target.value)
-          }
-          required
-        />
+        <p className="descricao">
+          Digite seu email para receber
+         <br />
+         um link de recuperação.
+      </p>
+
+      <label>E-mail</label>
+
+      <input
+        type="email"
+        placeholder=""
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+      />
 
         <button type="submit">
           ENVIAR
         </button>
 
-        <button
-          type="button"
-          onClick={() => navigate("/")}
+       <button
+        type="button"
+        onClick={() => navigate("/login")}
         >
-          CANCELAR
+          ← LOGIN
         </button>
       </form>
     </div>
