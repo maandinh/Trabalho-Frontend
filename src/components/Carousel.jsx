@@ -60,7 +60,7 @@ function Carousel() {
 
   return (
     <div className="carousel">
-      <button onClick={anteriores}>
+      <button className="btnhome" onClick={anteriores}>
         <GrPrevious />
       </button>
 
@@ -75,7 +75,7 @@ function Carousel() {
         ))}
       </div>
 
-      <button onClick={proximos}>
+      <button className="btnhome" onClick={proximos}>
         <GrNext />
       </button>
     </div>

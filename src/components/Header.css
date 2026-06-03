@@ -8,18 +8,20 @@ header {
 .icons {
     display: flex;
     gap: 15px;
-    color: #511a2d;
+    color: #450B1E;
+    background-color: white;
 }
 
-button {
+.btnhome {
     border: none;
     cursor: pointer;
     font-size: 25px;
     display: flex;
     align-items: center; 
-    color: #511a2d
+    color: #450B1E;
+    background-color: white;
 }
 
 a:visited {
- color:#511a2d
+ color:#450B1E
 }

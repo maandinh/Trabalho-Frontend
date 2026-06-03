@@ -10,7 +10,7 @@ function Header() {
    
   return (
     <header>
-     <button  onClick={() => setMenuAberto(!menuAberto)}><TbMenu2 /> </button>
+     <button className="btnhome" onClick={() => setMenuAberto(!menuAberto)}><TbMenu2 /> </button>
 
   <Menu  aberto={menuAberto}  fecharMenu={() => setMenuAberto(false)}
   />
@@ -18,8 +18,8 @@ function Header() {
 
     <div className="icons">
 
-     <button> <NavLink to="/perfil"> <TbUser /> </NavLink> </button>
-    <button> <NavLink to="/carrinho"> <TbShoppingBag /> </NavLink> </button>
+     <button className="btnhome"> <NavLink to="/perfil"> <TbUser /> </NavLink> </button>
+    <button className="btnhome"> <NavLink to="/carrinho"> <TbShoppingBag /> </NavLink> </button>
 
     </div>
     </header>

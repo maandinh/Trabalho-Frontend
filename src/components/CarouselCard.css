@@ -1,5 +1,5 @@
 .card {
-  border: 1px solid #511a2d;
+  border: 1px solid #450B1E;
   padding: 10px;
   margin: 5px;
   width: auto;
@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
+border-radius: 15px;
 }
 
 .card img {
