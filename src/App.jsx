@@ -1,35 +1,54 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import Cadastro from "./pages/Cadastro";
-import Carrinho from "./pages/Carrinho";
-import Layout from "./layouts/Layout"
-import Login from "./pages/Login";
 import Perfil from "./pages/Perfil";
 import Produtos from "./pages/Produtos";
-import Checkout from "./pages/Checkout";
+import Carrinho from "./pages/Carrinho";
+import Login from "./pages/Login";
+import EsqueceuSenha from "./pages/EsqueceuSenha";
+import Cadastro from "./pages/Cadastro";
+import Erro404 from "./pages/Erro404";
+import Layout from "./layouts/Layout";
 
 function App() {
   return (
     <Routes>
-       <Route path="/" element={<Layout />}> 
+      <Route element={<Layout />}>
+        <Route index element={<Home />} />
 
-      <Route index element={<Home />} />
+        <Route
+          path="/carrinho"
+          element={<Carrinho />}
+        />
 
-      <Route path="cadastro" element={<Cadastro/>} />
+       <Route 
+          path="perfil" 
+          element={<Perfil />} 
+       />
 
-      <Route path="carrinho" element={<Carrinho />} />
+       <Route 
+          path="produtos" 
+          element={<Produtos />} 
+       />
+      </Route>
 
-      <Route path="checkout" element={<Checkout />} />
+      <Route
+        path="/login"
+        element={<Login />}
+      />
 
-      <Route path="perfil" element={<Perfil />} />
+      <Route
+        path="/esqueceu-senha"
+        element={<EsqueceuSenha />}
+      />
 
-      <Route path="produtos" element={<Produtos />} />
+      <Route
+        path="/cadastro"
+        element={<Cadastro />}
+      />
 
-      <Route path="login" element={<Login />} /> 
-
-    </Route>
-    
+       <Route path="*" element={<Erro404 />} />
     </Routes>
+  
   );
 }
 

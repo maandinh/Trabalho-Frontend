@@ -1,0 +1,32 @@
+.erro404-container {
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  padding: 20px;
+}
+
+.erro404-container h1 {
+  font-size: 100px;
+  color: #6b0027;
+  margin: 0;
+}
+
+.erro404-container h2 {
+  margin-bottom: 10px;
+}
+
+.erro404-container a {
+  background: #6b0027;
+  color: white;
+
+  padding: 12px 20px;
+  border-radius: 4px;
+
+  text-decoration: none;
+  font-weight: bold;
+}

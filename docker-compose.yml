@@ -1,11 +1,10 @@
 services:
   app:
-    image: node:24
-    working_dir: /app
-    volumes:
-      - ./:/app
+    build: .
     ports:
       - "5173:5173"
-      - "4173:4173"
-    tty: true
-    stdin_open: true
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
