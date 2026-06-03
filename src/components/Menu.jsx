@@ -1,17 +1,25 @@
 import "./Menu.css";
 import { Link, NavLink } from "react-router";
 
-function Menu() {
-
+function Menu({ aberto, fecharMenu }) {
   return (
     <>
+      {aberto && (
+        <div className="overlay" onClick={fecharMenu}></div>
+      )}
+
+      <nav className={aberto ? "menu aberto" : "menu"}>
+
       <ul>
-        <li><NavLink to="/">Início</NavLink></li>
-        <li><NavLink to={`/Produtos`}>Produtos</NavLink></li>
-        <li><NavLink to="/Perfil">Perfil</NavLink></li>
-        <li><Link to="/">Sair</Link></li>
+        <li>MENU</li>
+        <li><NavLink to="/">INÍCIO</NavLink></li>
+        <li><NavLink to={`/perfil`}>PERFIL</NavLink></li>
+        <li><NavLink to="/produtos">PRODUTOS</NavLink></li>
+        <li><Link to="/">SAIR</Link></li>
       </ul>
-    </>
+
+    </nav>
+  </>
   );
 }
 

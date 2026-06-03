@@ -1,0 +1,93 @@
+.carrinho-container {
+    padding: 16px;
+}
+
+.carrinho-itens {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.carrinho-item {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #450B1E;
+    padding: 8px 0;
+}
+
+.item-imagem {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-right: 1rem;
+    border: 1px solid #450B1E;
+}
+
+.item-info {
+    flex: 1;
+}
+
+.item-nome {
+    font-weight: bold;
+}
+
+.item-preco {
+    color: #450B1E;
+}
+
+.remover-btn {
+    background: transparent;
+    border: none;
+    color: #450B1E;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.carrinho-footer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #450B1E;
+    border-radius: 8px;
+}
+
+.acoes {
+    display: flex;
+    gap: 10px;
+}
+
+.comprar-btn {
+    background: #450B1E;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.subtotal {
+    color: white;
+    font-weight: bolder;
+    margin-left: 15px;
+}
+
+@media (min-width: 768px) {
+    .carrinho-itens {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .carrinho-item {
+        flex: 1 1 45%;
+        border: 1px solid #450B1E;
+        margin: 8px;
+        padding: 12px;
+    }
+
+    .carrinho-footer {
+        justify-content: flex-end;
+        gap: 20px;
+    }
+}

@@ -1,0 +1,25 @@
+.card {
+  border: 1px solid #511a2d;
+  padding: 10px;
+  margin: 5px;
+  width: auto;
+  height: auto;
+  max-width: 120px;
+  max-height: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+
+}
+
+.card h5 {
+  font-size: 12px;
+  margin: 5px 0;
+
+}
