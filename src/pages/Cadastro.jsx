@@ -52,7 +52,7 @@ export default function Cadastro() {
   return (
     <div className="container-cadastro">
       <form onSubmit={handleCadastro} className="form-cadastro">
-        <h1>Criar conta</h1>
+        <h1>CRIAR CONTA</h1>
 
         <input
           type="text"
@@ -76,11 +76,11 @@ export default function Cadastro() {
         />
 
         <button type="submit" disabled={loading}>
-          {loading ? "Criando..." : "Criar conta"}
+          {loading ? "CRIANDO..." : "CRIAR CONTA"}
         </button>
 
         <Link to="/login">
-          Já tenho conta
+          CANCELAR
         </Link>
       </form>
     </div>
