@@ -3,7 +3,6 @@ import logo from "../assets/logo.png";
 
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useAuth } from "../contexts/useAuth";
 
 export default function Login() {
@@ -12,11 +11,31 @@ export default function Login() {
   const [mostrarSenha, setMostrarSenha] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const [erroEmail, setErroEmail] = useState("");
+  const [erroSenha, setErroSenha] = useState("");
+
   const { login } = useAuth();
   const navigate = useNavigate();
 
   async function handleLogin(e) {
     e.preventDefault();
+
+    setErroEmail("");
+    setErroSenha("");
+
+    let possuiErro = false;
+
+    if (!email.trim()) {
+      setErroEmail("O campo de email é obrigatório.");
+      possuiErro = true;
+    }
+
+    if (!senha.trim()) {
+      setErroSenha("O campo de senha é obrigatório.");
+      possuiErro = true;
+    }
+
+    if (possuiErro) return;
 
     try {
       setLoading(true);
@@ -29,23 +48,22 @@ export default function Login() {
 
       switch (error.code) {
         case "auth/user-not-found":
-          alert("Usuário não encontrado");
+        case "auth/invalid-credential":
+          setErroEmail("E-mail ou senha incorretos.");
+          setEmail("");
+          setSenha("");
           break;
 
         case "auth/wrong-password":
-          alert("Senha incorreta");
+          setErroSenha("Senha incorreta.");
           break;
 
         case "auth/invalid-email":
-          alert("E-mail inválido");
-          break;
-
-        case "auth/invalid-credential":
-          alert("E-mail ou senha incorretos");
+          setErroEmail("E-mail inválido.");
           break;
 
         default:
-          alert("Erro ao fazer login");
+          setErroEmail("Erro ao fazer login.");
       }
     } finally {
       setLoading(false);
@@ -59,40 +77,55 @@ export default function Login() {
 
         <h1>ENTRAR</h1>
 
+        <label>E-mail</label>
         <input
           type="email"
-          placeholder="E-mail"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
 
+        {erroEmail && (
+          <p className="mensagem-erro">{erroEmail}</p>
+        )}
+
+        <label>Senha</label>
+
         <div className="senha-container">
-           <input
+          <input
             type={mostrarSenha ? "text" : "password"}
-            placeholder="Senha"
             value={senha}
-           onChange={(e) => setSenha(e.target.value)}
+            onChange={(e) => setSenha(e.target.value)}
           />
 
-            <span onClick={() => setMostrarSenha(!mostrarSenha)}>
-            {mostrarSenha ? <FaEyeSlash /> : <FaEye />}
-            </span>
+          <span
+            className="olhinho"
+            onClick={() => setMostrarSenha(!mostrarSenha)}
+          >
+          </span>
         </div>
+
+        {erroSenha && (
+          <p className="mensagem-erro">{erroSenha}</p>
+        )}
 
         <Link to="/esqueceu-senha">
           Esqueci a Senha
         </Link>
 
-        <button type="submit" disabled={loading}>
-          {loading ? "Entrando..." : "ENTRAR"}
+        <button
+          className="buton-login"
+          type="submit"
+          disabled={loading}
+        >
+          {loading ? "ENTRANDO..." : "ENTRAR"}
         </button>
 
-    
         <button
-       type="button"
-       className="buton-cadastro"
-       onClick={() => navigate("/cadastro")}
-        >CRIAR CONTA
+          type="button"
+          className="buton-cadastro"
+          onClick={() => navigate("/cadastro")}
+        >
+          CRIAR CONTA
         </button>
       </form>
     </div>
