@@ -2,7 +2,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 0 15px 0 20px
 }
 
 .icons {
@@ -24,4 +24,10 @@ header {
 
 a:visited {
  color:#450B1E
+}
+
+.logo {
+    height: 100px;
+    width: auto;
+    padding-left: 40px
 }

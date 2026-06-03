@@ -24,7 +24,7 @@ function Carousel() {
   useEffect(() => {
     const verificarTela = () => {
       if (window.innerWidth >= 1024) {
-        setCardsVisiveis(10);
+        setCardsVisiveis(8);
       } else {
         setCardsVisiveis(3);
       }

@@ -3,6 +3,7 @@ import { TbMenu2, TbShoppingBag, TbUser } from "react-icons/tb";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import Menu from "./Menu";
+import logo from '../assets/logo.png'
 
 function Header() {
 
@@ -15,6 +16,7 @@ function Header() {
   <Menu  aberto={menuAberto}  fecharMenu={() => setMenuAberto(false)}
   />
   
+  <img className= 'logo' src={logo} alt={logo} />
 
     <div className="icons">
 
