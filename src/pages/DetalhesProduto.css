@@ -1,0 +1,21 @@
+.detalheProd {
+
+display: flex;
+flex-direction: column;
+align-items: center;
+
+}
+
+.btnProd {
+  font-size: 20px;
+  color: white;
+  background-color: #450B1E;
+  border: 1px solid #450B1E;
+  padding: 15px;
+  border-radius: 15px;
+
+}
+
+.textProd {
+  margin: 20px;
+}
