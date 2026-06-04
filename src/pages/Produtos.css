@@ -1,0 +1,49 @@
+.produtos-container {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 30px 20px;
+}
+
+.produtos-header h1 {
+  color: #6b0027;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.filtro-container {
+  width: 100%;
+  max-width: 350px;
+
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 30px;
+}
+
+.filtro-container label {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.filtro-container select {
+  padding: 12px;
+
+  border: 1px solid #6b0027;
+  border-radius: 4px;
+
+  outline: none;
+  background: white;
+}
+
+.lista-carrosseis {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
