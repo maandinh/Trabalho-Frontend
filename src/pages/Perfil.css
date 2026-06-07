@@ -1,0 +1,109 @@
+.perfil-container {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.perfil-card {
+  width: 100%;
+  max-width: 350px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.perfil-header {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 25px;
+}
+
+.perfil-header h1 {
+  margin: 0;
+  color: #6b0027;
+  text-align: center;
+}
+
+.perfil-foto {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.perfil-foto span {
+  font-size: 100px;
+}
+
+.perfil-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.perfil-form label {
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.avatar-circle {
+  width: 140px;
+  height: 140px;
+
+  border-radius: 50%;
+  background: #f2f2f2;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar-circle svg {
+  font-size: 70px;
+  color: #4d2c7a;
+}
+
+.perfil-form input {
+  width: 100%;
+  padding: 12px;
+
+  border: 1px solid #5b001f;
+  border-radius: 4px;
+
+  outline: none;
+  font-size: 14px;
+
+  box-sizing: border-box;
+  margin-bottom: 16px;
+}
+
+.perfil-form input:focus {
+  border-color: #6b0027;
+}
+
+.btn-salvar {
+  width: 100%;
+  padding: 12px;
+
+  border: none;
+  border-radius: 4px;
+
+  background: #6b0027;
+  color: white;
+
+  font-size: 15px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  margin-top: 10px;
+}
+
+.btn-salvar:hover {
+  opacity: 0.9;
+}
