@@ -11,7 +11,7 @@ function Menu({ aberto, fecharMenu }) {
       <nav className={aberto ? "menu aberto" : "menu"}>
 
       <ul>
-        <li>MENU</li>
+        <li><h1>MENU</h1></li>
         <li><NavLink to="/">INÍCIO</NavLink></li>
         <li><NavLink to={`/perfil`}>PERFIL</NavLink></li>
         <li><NavLink to="/produtos">PRODUTOS</NavLink></li>

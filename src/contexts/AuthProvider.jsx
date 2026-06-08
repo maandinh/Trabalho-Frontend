@@ -10,7 +10,6 @@ import {
 
 import { auth, db } from "../services/firebase";
 import { AuthContext } from "./AuthContext";
-
 import { doc, setDoc } from "firebase/firestore";
 
 export function AuthProvider({ children }) {

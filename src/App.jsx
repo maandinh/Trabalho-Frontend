@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Perfil from "./pages/Perfil";
 import Produtos from "./pages/Produtos";
@@ -8,28 +8,39 @@ import EsqueceuSenha from "./pages/EsqueceuSenha";
 import Cadastro from "./pages/Cadastro";
 import Erro404 from "./pages/Erro404";
 import Layout from "./layouts/Layout";
+import useAuth from "./contexts/useAuth";
+import DetalhesProduto from "./pages/DetalhesProduto";
 
 function App() {
+
+  const {autenticado} = useAuth();
+
   return (
+
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<Home />} />
 
         <Route
           path="/carrinho"
-          element={<Carrinho />}
+          element={!autenticado ? <Navigate to="/login" /> : <Carrinho />}
+
         />
 
        <Route 
-          path="perfil" 
-          element={<Perfil />} 
+          path="/perfil" 
+          element={!autenticado ? <Navigate to="/login" /> : <Perfil />} 
        />
 
        <Route 
-          path="produtos" 
-          element={<Produtos />} 
+          path="/produtos" 
+          element={<Produtos />}
+     
        />
-      </Route>
+      
+
+      <Route path="/produto/:id" element={<DetalhesProduto />} />
+</Route>
 
       <Route
         path="/login"
@@ -51,5 +62,6 @@ function App() {
   
   );
 }
+
 
 export default App;

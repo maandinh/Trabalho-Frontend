@@ -68,6 +68,7 @@ function Carousel() {
         {produtosVisiveis.map((produto) => (
           <CarouselCard
             key={produto.id}
+            id={produto.id}
             title={produto.title}
             image={produto.imageCover}
             price={produto.price}
