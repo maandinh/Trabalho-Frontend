@@ -1,12 +1,12 @@
-FROM node:20-alpine
+FROM node:22-slim
 
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm ci --ignore-scripts
+RUN npm install --include=dev
 
 COPY . .
 
 EXPOSE 5173
 
-CMD ["npm", "run", "dev", "--", "--host"]
+CMD ["npx", "vite", "--host"]
