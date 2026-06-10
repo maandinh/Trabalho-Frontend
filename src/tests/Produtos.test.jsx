@@ -72,12 +72,12 @@ describe("Página Produtos", () => {
 
     await user.selectOptions(
       filtro,
-      "feminino"
+      "women"
     );
 
     expect(
       filtro
-    ).toHaveValue("feminino");
+    ).toHaveValue("women");
   });
 
 });
