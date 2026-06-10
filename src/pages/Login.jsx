@@ -89,8 +89,9 @@ switch (error.code) {
 
         <h1>ENTRAR</h1>
 
-        <label>E-mail</label>
+       <label htmlFor="e-mail"> E-mail </label>
         <input
+        id='e-mail'
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
