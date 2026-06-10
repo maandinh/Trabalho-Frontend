@@ -18,7 +18,7 @@ function Carrinho() {
                 ) : (
                     carrinho.map((item) => (
                         <div key={item._id} className='carrinho-item'>
-                            <input type='checkbox' checked={selecionados.includes(item._id)} onChange={() => toggleSelecionado(item._id)}/>
+                            <input type='checkbox' checked={selecionados.includes(item._id)} onChange={() => toggleSelecionado(item._id)} className='checkbox-item'/>
                             {/* Imagem do produto */}
                             <img 
                             src={item.product.imageCover}
