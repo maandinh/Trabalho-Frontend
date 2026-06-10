@@ -1,0 +1,135 @@
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { MemoryRouter } from "react-router-dom";
+import Login from "../pages/Login";
+import { vi } from "vitest";
+
+const mockLogin = vi.fn();
+
+vi.mock("../contexts/useAuth", () => ({
+  useAuth: () => ({
+    login: mockLogin,
+  }),
+}));
+
+describe("Login", () => {
+    test("mostra erro quando email está vazio", async () => {
+  const user = userEvent.setup();
+
+  render(
+    <MemoryRouter>
+      <Login />
+    </MemoryRouter>
+  );
+
+  const senha = screen.getByLabelText(/senha/i);
+
+  await user.type(senha, "123456");
+
+  await user.click(
+    screen.getByRole("button", {
+      name: /entrar/i,
+    })
+  );
+
+  expect(
+    screen.getByText(
+      "O campo de email é obrigatório."
+    )
+  ).toBeInTheDocument();
+});
+
+test("mostra erro quando senha está vazia", async () => {
+  const user = userEvent.setup();
+
+  render(
+    <MemoryRouter>
+      <Login />
+    </MemoryRouter>
+  );
+
+  const email = screen.getByLabelText(/e-mail/i);
+
+  await user.type(
+    email,
+    "teste@email.com"
+  );
+
+  await user.click(
+    screen.getByRole("button", {
+      name: /entrar/i,
+    })
+  );
+
+  expect(
+    screen.getByText(
+      "O campo de senha é obrigatório."
+    )
+  ).toBeInTheDocument();
+
+});
+
+ test("mostra erro quando email e senha estão vazios", async () => {
+    const user = userEvent.setup();
+
+    render(
+      <MemoryRouter>
+        <Login />
+      </MemoryRouter>
+    );
+
+    await user.click(
+      screen.getByRole("button", {
+        name: /entrar/i,
+      })
+    );
+
+    expect(
+      screen.getByText(
+        "O campo de email é obrigatório."
+      )
+    ).toBeInTheDocument();
+
+    expect(
+      screen.getByText(
+        "O campo de senha é obrigatório."
+      )
+    ).toBeInTheDocument();
+  });
+
+  test("mostra mensagem para email ou senha inválidos", async () => {
+
+mockLogin.mockRejectedValue({
+  code: "auth/invalid-credential",
+});
+  const user = userEvent.setup();
+
+  render(
+    <MemoryRouter>
+      <Login />
+    </MemoryRouter>
+  );
+
+  await user.type(
+    screen.getByLabelText(/e-mail/i),
+    "teste@email.com"
+  );
+
+  await user.type(
+    screen.getByLabelText(/senha/i),
+    "123456"
+  );
+
+  await user.click(
+    screen.getByRole("button", {
+      name: /entrar/i,
+    })
+  );
+
+  expect(
+    await screen.findByText(
+      "E-mail ou senha incorretos."
+    )
+  ).toBeInTheDocument();
+});
+});

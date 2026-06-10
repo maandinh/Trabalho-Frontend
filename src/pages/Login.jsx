@@ -89,8 +89,9 @@ switch (error.code) {
 
         <h1>ENTRAR</h1>
 
-        <label>E-mail</label>
+       <label htmlFor="e-mail"> E-mail </label>
         <input
+        id='e-mail'
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -100,10 +101,11 @@ switch (error.code) {
           <p className="mensagem-erro">{erroEmail}</p>
         )}
 
-        <label>Senha</label>
+       <label htmlFor="senha">Senha </label>
 
         <div className="senha-container">
           <input
+           id="senha"
             type={mostrarSenha ? "text" : "password"}
             value={senha}
             onChange={(e) => setSenha(e.target.value)}
