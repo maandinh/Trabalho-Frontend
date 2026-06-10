@@ -65,7 +65,35 @@ test("mostra erro quando senha está vazia", async () => {
       "O campo de senha é obrigatório."
     )
   ).toBeInTheDocument();
+
 });
 
-}
-)
+ test("mostra erro quando email e senha estão vazios", async () => {
+    const user = userEvent.setup();
+
+    render(
+      <MemoryRouter>
+        <Login />
+      </MemoryRouter>
+    );
+
+    await user.click(
+      screen.getByRole("button", {
+        name: /entrar/i,
+      })
+    );
+
+    expect(
+      screen.getByText(
+        "O campo de email é obrigatório."
+      )
+    ).toBeInTheDocument();
+
+    expect(
+      screen.getByText(
+        "O campo de senha é obrigatório."
+      )
+    ).toBeInTheDocument();
+  });
+
+});
