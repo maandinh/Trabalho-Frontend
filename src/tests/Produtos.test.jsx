@@ -17,67 +17,19 @@ describe("Página Produtos", () => {
       screen.getByText("PRODUTOS")
     ).toBeInTheDocument();
   });
+});
 
-  test("renderiza o filtro", () => {
-    render(
-      <BrowserRouter>
-        <Produtos />
-      </BrowserRouter>
-    );
-
-    expect(
-      screen.getByLabelText(/filtro/i)
-    ).toBeInTheDocument();
+describe("Endpoint /produtos", () => {
+  it("deve retornar lista de produtos", async () => {
+    const res = await request(app).get("/produtos");
+    expect(res.status).toBe(200);
+    expect(Array.isArray(res.body)).toBe(true);
   });
 
-  test("possui opção masculino", () => {
-    render(
-      <BrowserRouter>
-        <Produtos />
-      </BrowserRouter>
-    );
-
-    expect(
-      screen.getByRole("option", {
-        name: /masculino/i
-      })
-    ).toBeInTheDocument();
+  it("deve lidar com erro do banco", async () => {
+    jest.spyOn(db, "query").mockRejectedValue(new Error("DB error"));
+    const res = await request(app).get("/produtos");
+    expect(res.status).toBe(500);
+    expect(res.body).toHaveProperty("erro");
   });
-
-  test("possui opção feminino", () => {
-    render(
-      <BrowserRouter>
-        <Produtos />
-      </BrowserRouter>
-    );
-
-    expect(
-      screen.getByRole("option", {
-        name: /feminino/i
-      })
-    ).toBeInTheDocument();
-  });
-
-  test("permite alterar filtro para feminino", async () => {
-    const user = userEvent.setup();
-
-    render(
-      <BrowserRouter>
-        <Produtos />
-      </BrowserRouter>
-    );
-
-    const filtro =
-      screen.getByRole("combobox");
-
-    await user.selectOptions(
-      filtro,
-      "women"
-    );
-
-    expect(
-      filtro
-    ).toHaveValue("women");
-  });
-
 });

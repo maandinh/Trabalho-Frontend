@@ -114,6 +114,33 @@
     color: #fff;
 }
 
+.pix-modal-overlay {
+  position: fixed;       /* cobre a tela toda */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6); /* fundo escuro semi-transparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;          /* fica acima do resto */
+}
+
+.pix-modal {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 400px;      /* controla largura */
+}
+
+.pix-qrcode {
+  width: 250px;          /* controla tamanho da imagem */
+  height: auto;
+  margin: 20px 0;
+}
+
 @media (max-width: 768px) {
     .checkout-container {
         padding: 12px;
