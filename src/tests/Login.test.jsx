@@ -96,4 +96,36 @@ test("mostra erro quando senha está vazia", async () => {
     ).toBeInTheDocument();
   });
 
+  test("mostra mensagem para email ou senha inválidos", async () => {
+
+  const user = userEvent.setup();
+
+  render(
+    <MemoryRouter>
+      <Login />
+    </MemoryRouter>
+  );
+
+  await user.type(
+    screen.getByLabelText(/e-mail/i),
+    "teste@email.com"
+  );
+
+  await user.type(
+    screen.getByLabelText(/senha/i),
+    "123456"
+  );
+
+  await user.click(
+    screen.getByRole("button", {
+      name: /entrar/i,
+    })
+  );
+
+  expect(
+    await screen.findByText(
+      "E-mail ou senha incorretos."
+    )
+  ).toBeInTheDocument();
+});
 });
