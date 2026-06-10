@@ -1,7 +1,16 @@
 import "./Menu.css";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
+import { useAuth } from "../contexts/useAuth";
 
 function Menu({ aberto, fecharMenu }) {
+  const { logout } = useAuth();
+  const navegar = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    navegar("/");
+  };
+
   return (
     <>
       {aberto && (
@@ -15,7 +24,7 @@ function Menu({ aberto, fecharMenu }) {
         <li><NavLink to="/">INÍCIO</NavLink></li>
         <li><NavLink to={`/perfil`}>PERFIL</NavLink></li>
         <li><NavLink to="/produtos">PRODUTOS</NavLink></li>
-        <li><Link to="/">SAIR</Link></li>
+        <li><NavLink to="/" onClick={handleLogout}>SAIR</NavLink></li>
       </ul>
 
     </nav>

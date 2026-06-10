@@ -107,3 +107,28 @@
 .btn-salvar:hover {
   opacity: 0.9;
 }
+
+.btn-sair {
+  width: 100%;
+  padding: 12px;
+
+  border: 1px solid #6b0027;
+  border-radius: 4px;
+
+  background: white;
+  color: #6b0027;
+
+  font-size: 15px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  margin-top: 10px;
+
+  transition: 0.2s ease;
+}
+
+.btn-sair:hover {
+  background: #6b0027;
+  color: white;
+}
