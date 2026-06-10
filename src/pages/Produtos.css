@@ -1,49 +1,80 @@
 .produtos-container {
   width: 100%;
-  min-height: 100vh;
+  max-width: 1200px;
 
+  margin: 0 auto;
+
+  padding: 20px;
+}
+
+.produtos-header {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  padding: 30px 20px;
+  justify-content: center;
 }
 
 .produtos-header h1 {
   color: #6b0027;
   margin-bottom: 30px;
-  text-align: center;
 }
 
 .filtro-container {
-  width: 100%;
-  max-width: 350px;
-
   display: flex;
   flex-direction: column;
-
+  align-items: center;
+  
   margin-bottom: 30px;
 }
 
 .filtro-container label {
-  font-size: 14px;
   margin-bottom: 8px;
+  font-size: 16px;
 }
 
 .filtro-container select {
-  padding: 12px;
+  width: 250px;
+
+  padding: 10px;
 
   border: 1px solid #6b0027;
   border-radius: 4px;
-
-  outline: none;
-  background: white;
 }
 
-.lista-carrosseis {
-  width: 100%;
+.produtos-grid {
+  display: grid;
 
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 20px;
+}
+
+@media (max-width: 1024px) {
+  .produtos-grid {
+    grid-template-columns:
+      repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .produtos-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .produtos-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
+
+    gap: 12px;
+  }
+
+  .produtos-header h1 {
+    font-size: 40px;
+  }
+
+  .filtro-container select {
+    width: 100%;
+  }
 }

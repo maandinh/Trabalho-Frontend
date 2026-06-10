@@ -1,9 +1,45 @@
 import "./Produtos.css";
-import { useState } from "react";
-import Carousel from "../components/Carousel";
+import { useEffect, useState } from "react";
+
+import ProdutoCard from "../components/ProdutoCard";
+import { produtoService } from "../services/api";
 
 function Produtos() {
+  const [produtos, setProdutos] = useState([]);
   const [filtro, setFiltro] = useState("");
+
+  useEffect(() => {
+    async function carregarProdutos() {
+      try {
+        const resposta =
+          await produtoService.buscarTodos();
+
+        setProdutos(resposta.data);
+      } catch (erro) {
+        console.error(erro);
+      }
+    }
+
+    carregarProdutos();
+  }, []);
+
+  const produtosFiltrados =
+  filtro === ""
+    ? produtos
+    : produtos.filter((produto) => {
+        const categoria =
+          produto.category?.name || "";
+
+        if (filtro === "women") {
+          return categoria === "Women's Fashion";
+        }
+
+        if (filtro === "men") {
+          return categoria === "Men's Fashion";
+        }
+
+        return true;
+      });
 
   return (
     <main className="produtos-container">
@@ -21,27 +57,34 @@ function Produtos() {
         <select
           id="filtro"
           value={filtro}
-          onChange={(e) => setFiltro(e.target.value)}
+          onChange={(e) =>
+            setFiltro(e.target.value)
+          }
         >
           <option value="">
-            FEMININO/MASCULINO
+            Todos
           </option>
 
-          <option value="feminino">
+          <option value="women">
             Feminino
           </option>
 
-          <option value="masculino">
+          <option value="men">
             Masculino
           </option>
         </select>
 
       </section>
 
-      <section className="lista-carrosseis">
-        <Carousel />
-        <Carousel />
-        <Carousel />
+      <section className="produtos-grid">
+
+        {produtosFiltrados.map((produto) => (
+          <ProdutoCard
+            key={produto._id}
+            produto={produto}
+          />
+        ))}
+
       </section>
 
     </main>
