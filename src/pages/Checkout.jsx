@@ -1,13 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { useCarrinho } from "../contexts/CartContext";
 import './Checkout.css';
+import qrCodeImg from "../assets/qrcode.png";
 
 function Checkout() {
     const { carrinho, selecionados } = useCarrinho();
     const navigate = useNavigate();
+    const [mostrarPix, setMostrarPix] = useState(false);
 
     const selecionadosDetalhes = carrinho.filter(item => selecionados.includes(item._id));
-    const formatarPreco = (valor) => new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL"}).format(valor);
+    const formatarPreco = (valor) => new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(valor);
     const subtotal = selecionadosDetalhes.reduce((acc, item) => acc + item.price * item.count, 0);
     const frete = 25;
     const total = subtotal + frete;
@@ -42,12 +44,19 @@ function Checkout() {
 
             <footer className="checkout-footer">
                 <div className="checkout-btn">
-                    <button className="finalizar-btn">GERAR PIX</button>
+                    <button className="finalizar-btn" onClick={() => setMostrarPix(true)}>GERAR PIX</button>
                 </div>
                 <div className="checkout-btn">
                     <button className="voltar-btn" onClick={() => navigate("/carrinho")}>VOLTAR À BAG</button>
                 </div>
             </footer>
+
+            {mostrarPix && (
+                <div className="pix-container">
+                    <h3>Pagamento via Pix</h3>
+                    <img src={qrcodeImg} alt="QR Code Pix" className="pix-qrcode" />
+                </div>
+            )}
         </div>
     );
 }

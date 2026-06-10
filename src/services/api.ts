@@ -1,8 +1,19 @@
 import axios from "axios";
+import { getAuth } from "firebase/auth";
 
 const api = axios.create({
     baseURL: 'https://ecommerce.routemisr.com/api/v1',
     timeout: 10000
+});
+
+api.interceptors.request.use(async (config) => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    if (user) {
+        const token = await user.getIdToken();
+        config.headers["token"] = token;
+    }
+    return config;
 });
 
 let tolenAtual: string | null = null;

@@ -30,7 +30,7 @@ function Carrinho() {
                                 <p className='item-detalhes'>{item.product.details}</p>
                                 <p className='item-preco'>{item.count} x R$ {item.price} = R$ {(item.price || 0) * item.count}</p>
                             </div>
-                            <button className='remover-btn' onClick={() => removerDoCarrinho(item._id)}>X</button>
+                            <button className='remover-btn' onClick={() => removerDoCarrinho(item.product._id)}>X</button>
                         </div>
                     ))
                 )}

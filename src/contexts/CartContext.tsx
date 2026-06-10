@@ -1,5 +1,7 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { carrinhoService } from "../services/api";
+import { useAuth } from "./useAuth";
+import { User } from "firebase/auth";
 
 interface CartContextProps {
   carrinho: any[];
@@ -13,11 +15,8 @@ interface CartContextProps {
 
 const CartContext = createContext<CartContextProps | undefined>(undefined);
 
-interface CartproviderProps {
-  children: ReactNode;
-}
-
-export const CartProvider: React.FC<CartproviderProps> = ({ children }) => {
+export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const { usuario } = useAuth() as { usuario: User | null };
   const [carrinho, setCarrinho] = useState<any[]>([]);
   const [totalCarrinho, setTotalCarrinho] = useState<number>(0);
   const [selecionados, setSelecionados] = useState<string[]>([]);
@@ -26,41 +25,51 @@ export const CartProvider: React.FC<CartproviderProps> = ({ children }) => {
     setSelecionados((prev) => prev.includes(itemId) ? prev.filter((id) => id !== itemId) : [...prev, itemId]);
   };
 
-  const tokenTeste =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMTVjYjFkZmMzM2Q4MDAxMjEwNjMyZSIsIm5hbWUiOiJNYXJpYW5hIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3ODAzMzYzMDcsImV4cCI6MTc4ODExMjMwN30.36y75eGwqHeVXMu22EEPfwIzBOMg9-jy2FSILVf_gYo";
-
   useEffect(() => {
     const carregarCarrinho = async () => {
-      try {
-        const resposta = await carrinhoService.buscarCarrinho(tokenTeste);
-        console.log("Resposta do carrinho:", resposta);
-        // Ajuste: pega os produtos dentro de resposta.data
-        setCarrinho(resposta.data.products || []);
-        setTotalCarrinho(resposta.data.totalCartPrice || 0);
-      } catch (error) {
-        console.error("Erro ao buscar carrinho:", error);
+      if (!usuario) {
+        return;
       }
+
+      const token = await usuario.getIdToken();
+      const resposta = await carrinhoService.buscarCarrinho(token);
+      setCarrinho(resposta.data.products || []);
+      setTotalCarrinho(resposta.data.totalCartPrice || 0);
     };
     carregarCarrinho();
-  }, []);
+  }, [usuario]);
 
   const adicionarAoCarrinho = async (productId: string, quantidade: number) => {
-    await carrinhoService.adicionarAoCarrinho({ productId, count: quantidade }, tokenTeste);
-    const atualizado = await carrinhoService.buscarCarrinho(tokenTeste);
+    if (!usuario) {
+      return;
+    }
+
+    const token = await usuario.getIdToken();
+    await carrinhoService.adicionarAoCarrinho({ productId, count: quantidade }, token );
+    const atualizado = await carrinhoService.buscarCarrinho(token);
     setCarrinho(atualizado.data.products || []);
     setTotalCarrinho(atualizado.data.totalCartPrice || 0);
   };
 
   const removerDoCarrinho = async (itemId: string) => {
-    await carrinhoService.removerDoCarrinho(itemId, tokenTeste);
-    const atualizado = await carrinhoService.buscarCarrinho(tokenTeste);
+    if (!usuario) {
+      return;
+    }
+
+    const token = await usuario.getIdToken();
+    await carrinhoService.removerDoCarrinho(itemId, token);
+    const atualizado = await carrinhoService.buscarCarrinho(token);
     setCarrinho(atualizado.data.products || []);
     setTotalCarrinho(atualizado.data.totalCartPrice || 0);
     setSelecionados((prev) => prev.filter((id) => id !== itemId));
   };
 
   const limparCarrinho = async () => {
-    await carrinhoService.limparCarrinho(tokenTeste);
+    if (!usuario) {
+      return;
+    }
+    const token = await usuario.getIdToken();
+    await carrinhoService.limparCarrinho(token);
     setCarrinho([]);
     setTotalCarrinho(0);
   };
@@ -74,7 +83,7 @@ export const CartProvider: React.FC<CartproviderProps> = ({ children }) => {
   );
 };
 
-export const useCarrinho = () => {
+export function useCarrinho() {
   const context = useContext(CartContext);
   if (!context) throw new Error("useCarrinho deve ser usado com CartProvider");
   return context;
