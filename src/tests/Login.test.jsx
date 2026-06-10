@@ -38,7 +38,34 @@ describe("Login", () => {
   ).toBeInTheDocument();
 });
 
+test("mostra erro quando senha está vazia", async () => {
+  const user = userEvent.setup();
 
+  render(
+    <MemoryRouter>
+      <Login />
+    </MemoryRouter>
+  );
+
+  const email = screen.getByLabelText(/e-mail/i);
+
+  await user.type(
+    email,
+    "teste@email.com"
+  );
+
+  await user.click(
+    screen.getByRole("button", {
+      name: /entrar/i,
+    })
+  );
+
+  expect(
+    screen.getByText(
+      "O campo de senha é obrigatório."
+    )
+  ).toBeInTheDocument();
+});
 
 }
 )
