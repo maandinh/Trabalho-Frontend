@@ -2,6 +2,14 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import Login from "../pages/Login";
+import { vi } from "vitest";
+
+vi.mock("../contexts/useAuth", () => ({
+  useAuth: () => ({
+    login: vi.fn(),
+  }),
+}));
+
 
 describe("Login", () => {
     test("mostra erro quando email está vazio", async () => {
