@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useCarrinho } from '../contexts/CartContext';
+import { useCarrinho } from '../contexts/CartContext.jsx';
 import './Carrinho.css';
 
 function Carrinho() {
