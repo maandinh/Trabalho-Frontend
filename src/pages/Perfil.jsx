@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/useAuth";
 import { FaUser } from "react-icons/fa";
 
+import Swal from "sweetalert2";
+
 import { updatePassword } from "firebase/auth";
 import {
   doc,
@@ -53,7 +55,6 @@ function Perfil() {
     e.preventDefault();
 
     try {
-
       if (senha.trim()) {
         await updatePassword(
           usuario,
@@ -68,18 +69,26 @@ function Perfil() {
         }
       );
 
-      alert(
-        "Dados atualizados com sucesso!"
-      );
+      await Swal.fire({
+        icon: "success",
+        title: "Dados salvos com sucesso!",
+        text: "Suas alterações foram atualizadas.",
+        confirmButtonColor: "#6b0027",
+        confirmButtonText: "OK"
+      });
 
       setSenha("");
 
     } catch (error) {
       console.error(error);
 
-      alert(
-        "Erro ao atualizar os dados."
-      );
+      Swal.fire({
+        icon: "error",
+        title: "Erro",
+        text: "Não foi possível atualizar os dados.",
+        confirmButtonColor: "#6b0027",
+        confirmButtonText: "OK"
+      });
     }
   }
 
