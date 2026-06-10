@@ -4,12 +4,13 @@ import { MemoryRouter } from "react-router-dom";
 import Login from "../pages/Login";
 import { vi } from "vitest";
 
+const mockLogin = vi.fn();
+
 vi.mock("../contexts/useAuth", () => ({
   useAuth: () => ({
-    login: vi.fn(),
+    login: mockLogin,
   }),
 }));
-
 
 describe("Login", () => {
     test("mostra erro quando email está vazio", async () => {
@@ -98,6 +99,9 @@ test("mostra erro quando senha está vazia", async () => {
 
   test("mostra mensagem para email ou senha inválidos", async () => {
 
+mockLogin.mockRejectedValue({
+  code: "auth/invalid-credential",
+});
   const user = userEvent.setup();
 
   render(
