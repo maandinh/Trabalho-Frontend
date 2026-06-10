@@ -37,6 +37,16 @@ describe("Página Perfil", () => {
     ).toBeInTheDocument();
   });
 
+  test("exibe o email do usuário logado", () => {
+    renderPerfil();
+
+    expect(
+      screen.getByDisplayValue(
+        "teste@email.com"
+      )
+    ).toBeInTheDocument();
+  });
+
   test("permite alterar endereço", async () => {
     const user = userEvent.setup();
 
@@ -73,6 +83,26 @@ describe("Página Perfil", () => {
     expect(input).toHaveValue(
       "12345678"
     );
+  });
+
+  test("renderiza botão salvar alterações", () => {
+    renderPerfil();
+
+    expect(
+      screen.getByRole("button", {
+        name: /salvar alterações/i
+      })
+    ).toBeInTheDocument();
+  });
+
+  test("renderiza botão sair", () => {
+    renderPerfil();
+
+    expect(
+      screen.getByRole("button", {
+        name: /sair/i
+      })
+    ).toBeInTheDocument();
   });
 
   test("chama logout ao clicar em sair", async () => {
