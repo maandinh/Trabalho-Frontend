@@ -24,7 +24,6 @@ function Menu({ aberto, fecharMenu }) {
         <li><NavLink to="/">INÍCIO</NavLink></li>
         <li><NavLink to={`/perfil`}>PERFIL</NavLink></li>
         <li><NavLink to="/produtos">PRODUTOS</NavLink></li>
-        <li><NavLink to="/" onClick={handleLogout}>SAIR</NavLink></li>
       </ul>
 
     </nav>
