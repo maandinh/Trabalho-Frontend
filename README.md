@@ -91,6 +91,35 @@ Este projeto teve como objetivo aplicar conceitos de desenvolvimento web moderno
 
 ---
 
+## Testes
+
+O projeto possui testes automatizados para validar o funcionamento das rotas e funcionalidades da aplicação.
+
+### Tecnologias utilizadas nos testes
+
+- Vitest
+- Supertest
+
+---
+
+### Executar todos os testes
+
+```bash
+npm test
+```
+
+ou
+
+```bash
+npm run test
+```
+
+### Executar testes uma única vez
+
+```bash
+npm run test:run
+```
+
 ## Instalação do Projeto
 
 ### Pré-requisitos
@@ -140,6 +169,51 @@ docker compose up -d
 ```bash
 docker compose down
 ```
+
+---
+
+## Integração Contínua e Entrega Contínua (CI/CD)
+
+O projeto utiliza GitHub Actions para automatização dos processos de integração contínua.
+
+As automações incluem:
+
+* Instalação automática das dependências;
+* Verificação de qualidade do código;
+* Execução de testes;
+* Processo de build da aplicação;
+* Preparação para deploy automatizado.
+
+---
+
+## Correções e Melhorias Implementadas
+
+Durante o desenvolvimento do projeto foram identificados e corrigidos diversos problemas relacionados à arquitetura da aplicação, infraestrutura e validação de dados.
+
+### Refatoração do Contexto de Autenticação
+
+Inicialmente, as implementações de `AuthProvider`, `AuthContext` e `useAuth` estavam concentradas em um único arquivo, o que gerava conflitos e dificultava a manutenção do código.
+
+Como melhoria, a estrutura foi reorganizada, separando cada responsabilidade em arquivos específicos. Essa refatoração aumentou a organização do projeto, facilitou a reutilização dos componentes e reduziu problemas de importação e dependência.
+
+### Correção da Infraestrutura Docker
+
+Durante os testes de execução da aplicação foi identificado que o projeto não iniciava corretamente utilizando apenas Docker.
+
+Para solucionar o problema, foi criado e configurado um arquivo `Dockerfile`, permitindo a construção adequada da imagem da aplicação e garantindo a execução correta do ambiente através do Docker Compose.
+
+### Implementação e Validação de Testes de Login
+
+Foram desenvolvidos testes automatizados para validar o formulário de autenticação da aplicação.
+
+Os testes verificam cenários como:
+
+* Campo de e-mail não preenchido;
+* Campo de senha não preenchido;
+* Exibição de mensagens de erro para entradas inválidas;
+* Comportamento esperado do formulário durante o processo de login.
+
+Essas validações contribuíram para aumentar a confiabilidade da aplicação e melhorar a experiência do usuário.
 
 ---
 
