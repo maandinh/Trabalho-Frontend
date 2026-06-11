@@ -42,3 +42,7 @@
   font-size: 18px;
   color: #6b0027;
 }
+
+.produto-card {
+  cursor: pointer;
+}
