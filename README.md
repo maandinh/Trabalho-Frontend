@@ -4,8 +4,6 @@
 
 O **YourWay** é uma aplicação web desenvolvida em React que simula uma plataforma de compras online, permitindo aos usuários navegar por produtos, gerenciar informações pessoais, adicionar itens ao carrinho e finalizar pedidos através de um processo de checkout com pagamento simulado via QR Code.
 
-O projeto foi desenvolvido como atividade acadêmica das disciplinas de **Construção de Frontend** e **Manutenção de Software e DevOps**, aplicando conceitos de desenvolvimento frontend moderno, integração com APIs REST, autenticação de usuários, persistência de dados e práticas de DevOps.
-
 ---
 
 ## Objetivos do Projeto
@@ -87,60 +85,9 @@ Este projeto teve como objetivo aplicar conceitos de desenvolvimento web moderno
 * GitHub
 * GitHub Actions
 
----
+### Tests
 
-## Estrutura das Principais Páginas
-
-### Login
-
-Permite que usuários autenticados acessem a plataforma.
-
-### Cadastro
-
-Permite o registro de novos usuários.
-
-### Home
-
-Página inicial com acesso aos produtos disponíveis.
-
-### Lista de Produtos
-
-Exibe os produtos disponíveis para compra.
-
-### Produto
-
-Apresenta os detalhes de um produto específico.
-
-### Carrinho
-
-Gerenciamento dos produtos selecionados pelo usuário.
-
-### Checkout
-
-Finalização da compra e geração do QR Code de pagamento simulado.
-
-### Perfil
-
-Permite visualizar e atualizar informações da conta.
-
----
-
-## Banco de Dados
-
-O projeto utiliza o **Firebase Firestore** para armazenamento das informações dos usuários.
-
-### Dados armazenados
-
-* Nome do usuário;
-* E-mail;
-* Informações de autenticação;
-* Dados necessários para gerenciamento da conta.
-
----
-
-## API Utilizada
-
-Os dados dos produtos são obtidos através da **MockAPI**, utilizada para simular uma API REST durante o desenvolvimento da aplicação.
+* Jest + Supertest
 
 ---
 
@@ -157,7 +104,7 @@ Os dados dos produtos são obtidos através da **MockAPI**, utilizada para simul
 
 ```bash
 git clone https://github.com/maandinh/Trabalho-Frontend.git
-cd TRABALHO-FRONTEND
+cd Trabalho-Frontend
 ```
 
 ### Instalação das dependências
@@ -193,20 +140,6 @@ docker compose up -d
 ```bash
 docker compose down
 ```
-
----
-
-## Integração Contínua e Entrega Contínua (CI/CD)
-
-O projeto utiliza GitHub Actions para automatização dos processos de integração contínua.
-
-As automações incluem:
-
-* Instalação automática das dependências;
-* Verificação de qualidade do código;
-* Execução de testes;
-* Processo de build da aplicação;
-* Preparação para deploy automatizado.
 
 ---
 
