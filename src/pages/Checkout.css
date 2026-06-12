@@ -114,6 +114,39 @@
     color: #fff;
 }
 
+.pix-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.pix-modal {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.pix-qrcode {
+  width: 200px;
+  height: auto;
+  margin: 20px 0;
+  display: block;
+}
+
+
 @media (max-width: 768px) {
     .checkout-container {
         padding: 12px;

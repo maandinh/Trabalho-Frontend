@@ -19,3 +19,9 @@ align-items: center;
 .textProd {
   margin: 20px;
 }
+
+.mensagem-sucesso {
+  color: green;
+  font-weight: bold;
+  margin-top: 10px;
+}

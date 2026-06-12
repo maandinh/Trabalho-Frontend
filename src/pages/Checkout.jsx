@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useCarrinho } from "../contexts/CartContext.jsx";
 import './Checkout.css';
 import qrCodeImg from "../assets/qrcode.png";
+import { useState } from "react";
 
 function Checkout() {
     const { carrinho, selecionados } = useCarrinho();
@@ -52,9 +53,12 @@ function Checkout() {
             </footer>
 
             {mostrarPix && (
-                <div className="pix-container">
-                    <h3>Pagamento via Pix</h3>
-                    <img src={qrcodeImg} alt="QR Code Pix" className="pix-qrcode" />
+                <div className="pix-modal-overlay">
+                    <div className="pix-modal">
+                        <h3>Pagamento via Pix</h3>
+                        <img src={qrCodeImg} alt="QR Code Pix" className="pix-qrcode" />
+                        <button onClick={() => setMostrarPix(false)}>Fechar</button>
+                    </div>
                 </div>
             )}
         </div>

@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Perfil from "./pages/Perfil";
 import Produtos from "./pages/Produtos";
 import Carrinho from "./pages/Carrinho";
+import Checkout from "./pages/Checkout";
 import Login from "./pages/Login";
 import EsqueceuSenha from "./pages/EsqueceuSenha";
 import Cadastro from "./pages/Cadastro";
@@ -25,6 +26,11 @@ function App() {
           path="/carrinho"
           element={!autenticado ? <Navigate to="/login" /> : <Carrinho />}
 
+        />
+
+        <Route 
+          path="/checkout"
+          element={!autenticado ? <Navigate to="/login" /> : <Checkout />}
         />
 
        <Route 

@@ -15,6 +15,11 @@
     padding: 8px 0;
 }
 
+.checkbox-item {
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
 .item-imagem {
     width: 80px;
     height: 80px;
@@ -42,6 +47,7 @@
     color: #450B1E;
     cursor: pointer;
     margin-right: 15px;
+    font-weight: bolder;
 }
 
 .carrinho-footer {
